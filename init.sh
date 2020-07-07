@@ -6,6 +6,18 @@ set -x
 cd /usr/local/bin
 . conf.sh
 
+connect(){
+    while :; do
+        echo Starting SSH
+        ssh -l "$USER" -N -R "$PORT":localhost:22 "$SERVER" &
+        PID="$!"
+        echo "$PID" > /tmp/cloud.pid
+        echo Waiting...
+        wait
+        echo SSH exited: $?
+    done
+}
+
 start() {
     # Start a new screen in detached state.
     cd $HOME
@@ -18,9 +30,7 @@ start() {
     done
 
     # Forward server port here.
-    ssh -l "$USER" -N -R "$PORT":localhost:22 "$SERVER" &
-    PID="$$"
-    echo "$PID" > /tmp/cloud.pid
+    connect &
     exit 0
 }
 
