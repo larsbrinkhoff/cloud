@@ -9,7 +9,7 @@ cd /usr/local/bin
 connect(){
     while :; do
         echo Starting SSH
-        ssh -l "$USER" -N -R "$PORT":localhost:22 "$SERVER" &
+        ssh -o ServerAliveInterval=5 -l "$USER" -N -R "$PORT":localhost:22 "$SERVER" &
         PID="$!"
         echo "$PID" > /tmp/cloud.pid
         echo Waiting...
