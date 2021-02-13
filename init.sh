@@ -5,11 +5,12 @@ set -x
 
 cd /usr/local/bin
 . conf.sh
+OPTIONS=-o ServerAliveInterval=5 -l "$USER" -N -R "$PORT":localhost:22
 
 connect(){
     while :; do
         echo Starting SSH
-        ssh -o ServerAliveInterval=5 -l "$USER" -N -R "$PORT":localhost:22 "$SERVER" &
+        ssh $OPTIONS "$SERVER" &
         PID="$!"
         echo "$PID" > /tmp/cloud.pid
         echo Waiting...
