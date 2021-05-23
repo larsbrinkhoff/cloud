@@ -23,6 +23,11 @@ start() {
     cd $HOME
     screen -d -m -U -S cloud
 
+    # Wait for network to come up.
+    while ! ping -c1 "$SERVER"; do
+        sleep 5
+    done
+
     # Announce my name to the server.
     while ! ssh -l "$USER" "$SERVER" echo start "$PORT" "$NAME" '>>' .nodes; do
         echo Retrying...;
