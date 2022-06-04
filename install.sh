@@ -6,7 +6,7 @@ read x
 echo "Checking for screen."
 command -v screen || exit 1
 
-. conf.sh || exit 1
+. ./conf.sh || exit 1
 
 echo "Configuration:"
 echo SERVER=$SERVER

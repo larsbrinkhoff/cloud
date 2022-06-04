@@ -4,7 +4,7 @@ exec > /tmp/cloud.log 2>&1
 set -x
 
 cd /usr/local/bin
-. conf.sh
+. ./conf.sh
 OPTIONS="-o ServerAliveInterval=5 -l $USER -N -R $PORT:localhost:22"
 
 connect(){

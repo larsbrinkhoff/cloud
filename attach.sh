@@ -3,7 +3,7 @@
 stty -ixon -ixoff
 
 cd $HOME/bin
-. conf.sh
+. ./conf.sh
 
 PORT="$1"
 OPTIONS="-o ServerAliveInterval=5 -t -l $USER -p $PORT"
