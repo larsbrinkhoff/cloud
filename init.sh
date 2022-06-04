@@ -5,7 +5,7 @@ set -x
 
 cd /usr/local/bin
 . conf.sh
-OPTIONS=-o ServerAliveInterval=5 -l "$USER" -N -R "$PORT":localhost:22
+OPTIONS="-o ServerAliveInterval=5 -l $USER -N -R $PORT:localhost:22"
 
 connect(){
     while :; do
