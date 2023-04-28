@@ -10,11 +10,18 @@ OPTIONS="-o ServerAliveInterval=5 -l $USER -N -R $PORT:localhost:22"
 connect(){
     while :; do
         echo Starting SSH
+        rm -f /tmp/cloud.pid
         ssh $OPTIONS "$SERVER" &
         PID="$!"
-        echo "$PID" > /tmp/cloud.pid
-        echo Waiting...
-        wait
+        sleep 2
+        if kill -CONT "$PID"; then
+            echo "$PID" > /tmp/cloud.pid
+            echo Waiting...
+            wait
+            echo SSH exited: $?
+        else
+            sleep 2
+        fi
         echo SSH exited: $?
     done
 }
