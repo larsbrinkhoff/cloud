@@ -11,8 +11,12 @@ stop() {
 
 trap stop INT TERM QUIT EXIT
 
+if command -v emacs; then
+    EMACS="emacs -nw"
+fi
+
 cd $HOME
-screen -d -m -U -S "$NAME"
+screen -d -m -U -S "$NAME" $EMACS
 
 while :; do
     echo "Cloud screen is alive."
