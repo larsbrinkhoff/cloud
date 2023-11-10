@@ -2,7 +2,7 @@
 
 stty -ixon -ixoff
 
-cd $HOME/bin
+cd $HOME/src/cloud
 . ./conf.sh
 
 PORT="$1"

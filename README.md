@@ -2,9 +2,10 @@
 
 Install below scripts and register to run when machine starts.
 
-### init.sh
+### screen.sh and tunnel.sh
 
-Start a screen session and forward an SSH port to this machine.
+These two scripts start a screen session and forward an SSH port to
+this machine.
 
 ### attach.sh
 

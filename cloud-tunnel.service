@@ -1,0 +1,18 @@
+[Unit]
+Description=Cloud SSH Tunnel
+Requires=network-online.target
+After=network-online.target
+Requires=cloud-screen.service
+After=cloud-screen.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=exec
+User=lars
+WorkingDirectory=/home/lars/src/cloud
+ExecStart=/bin/sh ./tunnel.sh
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
