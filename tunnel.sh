@@ -3,7 +3,13 @@
 set -x
 
 . ./conf.sh
-OPTIONS="-o ServerAliveInterval=5 -l $USER -N -R $PORT:localhost:22"
+OPTIONS="
+  -o ServerAliveInterval=5
+  -o ServerAliveCountMax=5
+  -o ConnectTimeout=30
+  -o ConnectionAttempts=3
+  -o ExitOnForwardFailure=yes
+  -l $USER -NT -R $PORT:localhost:22"
 
 announce() {
     ssh -l "$USER" "$SERVER" echo "$1" '>>' .nodes
